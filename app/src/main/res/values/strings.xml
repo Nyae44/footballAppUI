@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">FootBallApp</string>
+    <string name="menu">Menu</string>
+    <string name="welcome_nyae">Welcome,\n Nyae</string>
+    <string name="notifications">Notifications</string>
+    <string name="search">Search</string>
+    <string name="todays_match" tools:ignore="ExtraTranslation,StringEscaping">Today's match</string>
+    <string name="arrow_pointing_right">Right</string>
+    <string name="manchester_united">Manchester United</string>
+    <string name="chelsea">Chelsea</string>
+    <string name="liverpool">Liverpool</string>
+    <string name="n.forest">N.Forest</string>
+    <string name="man_city">Man City</string>
+    <string name="brighton">Brighton</string>
+    <string name="wolves">Wolves</string>
+    <string name="leicester">Leicester</string>
+    <string name="time_1">1830hrs</string>
+    <string name="time_2">1930hrs</string>
+    <string name="time_3">1945hrs</string>
+</resources>

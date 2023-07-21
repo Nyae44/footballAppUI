@@ -1,0 +1,26 @@
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:width="24dp"
+    android:height="24dp">
+
+    <!-- Scaled path commands for viewportWidth and viewportHeight of 24 with stroke width of 1.5 -->
+    <path
+        android:pathData="M0 5.25L23 5.25L24 6.75L1 6.75L0 5.25Z"
+        android:fillColor="#000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"/>
+
+    <path
+        android:pathData="M0 12.75L23 12.75L24 14.25L1 14.25L0 12.75Z"
+        android:fillColor="#000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"/>
+
+    <path
+        android:pathData="M0 20.25L23 20.25L24 21.75L1 21.75L0 20.25Z"
+        android:fillColor="#000000"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.5"/>
+</vector>
