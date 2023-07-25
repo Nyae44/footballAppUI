@@ -4,7 +4,7 @@
     <string name="welcome_nyae">Welcome,\n Nyae</string>
     <string name="notifications">Notifications</string>
     <string name="search">Search</string>
-    <string name="live_match">Live matches</string>
+    <string name="live_match">Live Match</string>
     <string name="arrow_pointing_right">Right</string>
     <string name="manchester_united">Manchester United</string>
     <string name="chelsea">Chelsea</string>
@@ -17,4 +17,7 @@
     <string name="time_1">1830hrs</string>
     <string name="time_2">1930hrs</string>
     <string name="time_3">1945hrs</string>
+    <string name="epl_background">EPL Background</string>
+    <string name="stamford_bridge">Stamford Bridge</string>
+    <string name="week_10">Week 10</string>
 </resources>
