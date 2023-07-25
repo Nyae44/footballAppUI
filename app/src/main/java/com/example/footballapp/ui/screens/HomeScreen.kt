@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,10 +23,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,16 +40,24 @@ import com.example.footballapp.R
 import com.example.footballapp.ui.theme.AppTheme
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
+import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import java.time.LocalDate
 import java.time.YearMonth
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.text.style.TextAlign
+import com.kizitonwose.calendar.core.DayPosition
+import com.kizitonwose.calendar.core.WeekDayPosition
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.format.TextStyle
+import java.util.Date
+import java.util.Locale
 
-
-@RequiresApi(Build.VERSION_CODES.O)
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Scaffold(
@@ -53,6 +65,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         bottomBar = {},
         content = {
               Column(modifier = modifier.padding(it)) {
+                CurrentDate()
                 CalendarComponent()
                 UpcomingFixturesTitle()
               }
@@ -120,29 +133,57 @@ fun TopAppBar(modifier: Modifier = Modifier) {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun CalendarComponent() {
-    val currentDate = remember { LocalDate.now() }
-    val currentMonth = remember { YearMonth.now() }
-    val startDate = remember { currentMonth.minusMonths(100).atStartOfMonth() } // Adjust as needed
-    val endDate = remember { currentMonth.plusMonths(100).atEndOfMonth() } // Adjust as needed
-    val firstDayOfWeek = remember { firstDayOfWeekFromLocale() } // Available from the library
-    val daysOfWeek = daysOfWeek()
+fun CurrentDate(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 20.dp, start = 10.dp)
+    ) {
+        val sdf = SimpleDateFormat(" 'Date\n'dd-MM-yyyy ' 'HH:mm:ss z ")
+        val currentDateAndTime = sdf.format(Date())
+        Text(
+            text = currentDateAndTime,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.SemiBold
+        )
+    }
+}
+@Composable
+fun CalendarComponent(modifier : Modifier = Modifier) {
+    Column(modifier = modifier.padding(top = 20.dp)) {
+        val currentDate = remember { LocalDate.now() }
+        val currentMonth = remember { YearMonth.now() }
+        val startDate =
+            remember { currentMonth.minusMonths(100).atStartOfMonth() } // Adjust as needed
+        val endDate = remember { currentMonth.plusMonths(100).atEndOfMonth() } // Adjust as needed
+        val firstDayOfWeek = remember { firstDayOfWeekFromLocale() } // Available from the library
+        var selectedDate by remember { mutableStateOf<LocalDate?>(null) }
+        val daysOfWeek = remember { daysOfWeek() }
 
-    val state = rememberWeekCalendarState(
-        startDate = startDate,
-        endDate = endDate,
-        firstVisibleWeekDate = currentDate,
-        firstDayOfWeek = firstDayOfWeek,
 
-    )
+        val state = rememberWeekCalendarState(
+            startDate = startDate,
+            endDate = endDate,
+            firstVisibleWeekDate = currentDate,
+            firstDayOfWeek = daysOfWeek.first(),
 
-    WeekCalendar(
-        state = state,
-        dayContent = { Day(it) },
-        monthHeader = { month -> }
-    )
+            )
+
+
+        DaysOfWeekTitle(daysOfWeek = daysOfWeek)
+        WeekCalendar(
+            state = state,
+            dayContent = { day ->
+                Day(day = day, isSelected = selectedDate == day.date) { day ->
+                    selectedDate = if (selectedDate == day.date) null else day.date
+                }
+            },
+            weekHeader = { month ->
+                val daysOfWeek = month.days.map { it.date.dayOfWeek }
+            }
+        )
+    }
 }
 
 @Composable
@@ -180,20 +221,35 @@ fun UpcomingFixtures(modifier: Modifier = Modifier) {
 fun BottomBarComponent() {
 
 }
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun Day(day: WeekDay) {
+fun Day(day: WeekDay,isSelected:Boolean, onClick:(WeekDay) -> Unit) {
     Box(
         modifier = Modifier
-            .aspectRatio(1f), // This is important for square sizing!
+            .aspectRatio(1f)
+            .clip(RectangleShape)
+            .background(color = if (isSelected) Color.Magenta else Color.Transparent)
+            .clickable(
+                enabled = day.position == WeekDayPosition.RangeDate,
+                onClick = { onClick(day) }
+            ), // This is important for square sizing!
         contentAlignment = Alignment.Center
     ) {
         Text(text = day.date.dayOfMonth.toString())
     }
 }
 
+@Composable
+fun DaysOfWeekTitle(daysOfWeek: List<DayOfWeek>) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        for (dayOfWeek in daysOfWeek){
+            Text(
+                modifier = Modifier.weight(1f),
+                textAlign = TextAlign.Center,
+                text = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()))
+        }
+    }
+}
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true)
 @Preview(showBackground = true, showSystemUi = true )
 @Composable
