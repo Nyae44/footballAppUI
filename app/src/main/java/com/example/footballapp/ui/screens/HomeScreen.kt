@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -196,11 +198,11 @@ fun UpcomingFixturesTitle(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 10.dp)
+            .padding(top = 20.dp, start = 10.dp)
     ) {
         // There's an Icon before the text composable
-       /** Text(
-            text = stringResource(id = R.string.todays_match),
+       Text(
+            text = stringResource(id = R.string.live_match),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.SemiBold,
             fontSize = 18.sp
@@ -208,13 +210,18 @@ fun UpcomingFixturesTitle(modifier: Modifier = Modifier) {
         Spacer(modifier = modifier.weight(1f))
         Icon(
             imageVector = Icons.Default.KeyboardArrowRight,
-            contentDescription = stringResource(id = R.string.arrow_pointing_right)
-        )**/
+            contentDescription = stringResource(id = R.string.arrow_pointing_right),
+            modifier = modifier.padding(end = 20.dp)
+        )
     }
 }
 @Composable
 fun UpcomingFixtures(modifier: Modifier = Modifier) {
-    
+    Box(modifier = modifier) {
+        Column(modifier = modifier) {
+            
+        }
+    }
 }
 
 @Composable

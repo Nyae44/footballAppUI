@@ -4,7 +4,7 @@
     <string name="welcome_nyae">Welcome,\n Nyae</string>
     <string name="notifications">Notifications</string>
     <string name="search">Search</string>
-    <string name="todays_match" tools:ignore="ExtraTranslation,StringEscaping">Today's match</string>
+    <string name="live_match">Live matches</string>
     <string name="arrow_pointing_right">Right</string>
     <string name="manchester_united">Manchester United</string>
     <string name="chelsea">Chelsea</string>
