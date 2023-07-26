@@ -6,7 +6,7 @@
     <string name="search">Search</string>
     <string name="live_match">Live Match</string>
     <string name="arrow_pointing_right">Right</string>
-    <string name="manchester_united">Manchester United</string>
+    <string name="manchester_united">Man United</string>
     <string name="chelsea">Chelsea</string>
     <string name="liverpool">Liverpool</string>
     <string name="n.forest">N.Forest</string>
@@ -20,4 +20,9 @@
     <string name="epl_background">EPL Background</string>
     <string name="stamford_bridge">Stamford Bridge</string>
     <string name="week_10">Week 10</string>
+    <string name="home">Home</string>
+    <string name="away">Away</string>
+    <string name="match_time">90+4</string>
+    <string name="today_date">Date</string>
+    <string name="result">0:6</string>
 </resources>

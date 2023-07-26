@@ -12,14 +12,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -36,7 +37,6 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -145,8 +145,12 @@ fun CurrentDate(modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(top = 20.dp, start = 10.dp)
     ) {
-        val sdf = SimpleDateFormat(" 'Date\n'dd-MM-yyyy ' 'HH:mm:ss z ")
+        val sdf = SimpleDateFormat(" ' 'dd-MM-yyyy ' 'HH:mm:ss z ")
         val currentDateAndTime = sdf.format(Date())
+        Icon(
+            imageVector = Icons.Default.DateRange,
+            contentDescription = stringResource(id = R.string.today_date)
+        )
         Text(
             text = currentDateAndTime,
             style = MaterialTheme.typography.titleMedium,
@@ -217,69 +221,114 @@ fun LiveScoreComponentTitle(modifier: Modifier = Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LiveScoreComponent(modifier: Modifier = Modifier) {
-    //Omitted the standalone box composable for conforming with the standard design
-    /** Box(
+     Box(
     modifier = modifier
-    .fillMaxWidth()
-    .padding(top = 20.dp, start = 20.dp, end = 20.dp)
-    .blur(4.dp)
-    .clip(RoundedCornerShape(10.dp)),
+        .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+        .clip(RoundedCornerShape(15.dp))
+        .size(700.dp),
 
     ) {
     Image(
     painter = painterResource(id = R.drawable.epl_background),
-    contentDescription = stringResource(id = R.string.epl_background))
+    contentDescription = stringResource(id = R.string.epl_background),
+    modifier = modifier.blur(5.dp)
+    )
     Column(modifier = modifier) {
+        Column(
+            modifier = modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = stringResource(id = R.string.stamford_bridge),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = modifier.padding(top = 10.dp),
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White
+            )
+            Text(
+                text = stringResource(id = R.string.week_10),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Light,
+                color = Color.White
+            )
 
-    }
-    }**/
-    Card(
-        onClick = { /*TODO*/ },
-        modifier = modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp)
-    ) {
-        Box(
-            modifier = modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(10.dp))
 
-        ){
-            Image(
-                painter = painterResource(id = R.drawable.epl_background),
-                contentDescription = stringResource(id = R.string.epl_background))
-            Column() {
-                Column(
-                    modifier = modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(5.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.stamford_bridge),
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = modifier.padding(top = 10.dp),
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Text(
-                        text = stringResource(id = R.string.week_10),
-                        style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.Light
-                    )
-                }
-                Column() {
-                    Row(
-                        modifier = modifier.fillMaxWidth()
-                            .padding(start = 10.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.manchester_united),
-                            contentDescription = stringResource(id = R.string.manchester_united),
-                            modifier = modifier.size(80.dp)
-                        )
-                    }
-                }
-            }
         }
+        Row(
+            modifier = modifier.fillMaxWidth(),
+        ) {
+            Column(
+                modifier = modifier.padding(start = 10.dp),
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Row() {
+                    Image(
+                        painter = painterResource(id = R.drawable.chelsea),
+                        contentDescription = stringResource(id = R.string.chelsea),
+                        modifier = modifier.size(80.dp)
+                    )
+                }
+
+                Text(
+                    text = stringResource(id = R.string.chelsea),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = modifier.padding(start = 10.dp),
+                    color = Color.White
+                )
+                Text(
+                    text = stringResource(id = R.string.home),
+                    style = MaterialTheme.typography.bodySmall,
+                    fontWeight = FontWeight.SemiBold,
+                    fontStyle = FontStyle.Italic,
+                    modifier = modifier.padding(start = 25.dp),
+                    color = Color.White
+                )
+
+            }
+            Text(
+                text = stringResource(id = R.string.result),
+                style = MaterialTheme.typography.headlineLarge,
+                color = Color.White,
+                modifier = modifier.padding(start = 64.dp, top = 40.dp)
+                    .background(Color.Black, shape = RectangleShape)
+                )
+            Spacer(modifier = modifier.weight(1f))
+          Column(
+              modifier = modifier.padding(end = 10.dp),
+              verticalArrangement = Arrangement.SpaceEvenly
+          ) {
+              Image(
+                  painter = painterResource(id = R.drawable.manchester_united),
+                  contentDescription = stringResource(id = R.string.manchester_united),
+                  modifier = Modifier.size(80.dp)
+              )
+                  Text(
+                      text = stringResource(id = R.string.manchester_united),
+                      style = MaterialTheme.typography.titleMedium,
+                      fontWeight = FontWeight.SemiBold,
+                      color = Color.White
+                  )
+                  Text(
+                      text = stringResource(id = R.string.away),
+                      style = MaterialTheme.typography.bodySmall,
+                      fontWeight = FontWeight.SemiBold,
+                      modifier = modifier.padding(start = 25.dp),
+                      color = Color.White
+                  )
+
+          }
+
+        }
+        Text(
+            text = stringResource(id = R.string.match_time),
+            color = Color.Green,
+            modifier = modifier.padding(start = 155.dp)
+        )
     }
+ }
 }
+
 
 @Composable
 fun UpcomingFixturesTitle(modifier: Modifier = Modifier) {
