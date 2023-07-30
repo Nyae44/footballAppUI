@@ -1,5 +1,6 @@
 package com.example.footballapp.ui.screens
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -12,15 +13,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -33,7 +37,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -46,6 +49,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.footballapp.R
+import com.example.footballapp.data.FixtureRepository.matchFixtures
+import com.example.footballapp.model.Fixture
 import com.example.footballapp.ui.theme.AppTheme
 import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
@@ -73,6 +78,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 CalendarComponent()
                 LiveScoreComponentTitle()
                 LiveScoreComponent()
+                UpcomingFixturesTitle()
+                UpcomingFixturesComponent()
               }
         }
     )
@@ -138,6 +145,7 @@ fun TopAppBar(modifier: Modifier = Modifier) {
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 @Composable
 fun CurrentDate(modifier: Modifier = Modifier) {
     Row(
@@ -200,20 +208,13 @@ fun LiveScoreComponentTitle(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 20.dp, start = 10.dp)
+            .padding(top = 10.dp, start = 25.dp)
     ) {
         // There's an Icon before the text composable
         Text(
             text = stringResource(id = R.string.live_match),
             style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.SemiBold,
-            fontSize = 18.sp
-        )
-        Spacer(modifier = modifier.weight(1f))
-        Icon(
-            imageVector = Icons.Default.KeyboardArrowRight,
-            contentDescription = stringResource(id = R.string.arrow_pointing_right),
-            modifier = modifier.padding(end = 20.dp)
+            fontWeight = FontWeight.SemiBold
         )
     }
 }
@@ -223,15 +224,16 @@ fun LiveScoreComponentTitle(modifier: Modifier = Modifier) {
 fun LiveScoreComponent(modifier: Modifier = Modifier) {
      Box(
     modifier = modifier
+        .fillMaxWidth()
         .padding(top = 20.dp, start = 20.dp, end = 20.dp)
         .clip(RoundedCornerShape(15.dp))
-        .size(700.dp),
+       // .size(500.dp)
+         ,
 
     ) {
     Image(
     painter = painterResource(id = R.drawable.epl_background),
-    contentDescription = stringResource(id = R.string.epl_background),
-    modifier = modifier.blur(5.dp)
+    contentDescription = stringResource(id = R.string.epl_background)
     )
     Column(modifier = modifier) {
         Column(
@@ -290,8 +292,9 @@ fun LiveScoreComponent(modifier: Modifier = Modifier) {
                 text = stringResource(id = R.string.result),
                 style = MaterialTheme.typography.headlineLarge,
                 color = Color.White,
-                modifier = modifier.padding(start = 64.dp, top = 40.dp)
-                    .background(Color.Black, shape = RectangleShape)
+                modifier = modifier
+                    .padding(start = 64.dp, top = 40.dp)
+                    .background(Color(0xFF5C075F), shape = RectangleShape)
                 )
             Spacer(modifier = modifier.weight(1f))
           Column(
@@ -316,7 +319,6 @@ fun LiveScoreComponent(modifier: Modifier = Modifier) {
                       modifier = modifier.padding(start = 25.dp),
                       color = Color.White
                   )
-
           }
 
         }
@@ -332,11 +334,93 @@ fun LiveScoreComponent(modifier: Modifier = Modifier) {
 
 @Composable
 fun UpcomingFixturesTitle(modifier: Modifier = Modifier) {
-
+    Row (
+        modifier = modifier
+            .padding(start = 10.dp, top = 10.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ){
+        Image(
+            painter = painterResource(id = R.drawable.epl),
+            contentDescription = stringResource(id = R.string.upcoming_fixtures),
+            modifier = modifier
+                .size(62.dp)
+                .padding(bottom = 20.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.upcoming_fixtures),
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.SemiBold,
+            modifier = modifier
+                .padding(top = 5.dp)
+        )
+        Spacer(modifier = modifier.weight(1f))
+        Icon(
+            imageVector = Icons.Default.KeyboardArrowRight,
+            contentDescription = stringResource(id = R.string.arrow_pointing_right),
+            modifier = modifier.padding(top = 8.dp,end = 20.dp)
+        )
+    }
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UpcomingFixtures(modifier: Modifier = Modifier) {
+fun UpcomingFixtures(modifier: Modifier = Modifier, fixture: Fixture) {
+    Column(
+        modifier = modifier
+            .padding(top = 0.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Card(
+            onClick = {},
+            modifier = modifier
+                .padding(start = 10.dp, end = 10.dp, bottom = 10.dp)
+        ) {
+            Row(
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                Text(
+                    text = stringResource(id = fixture.firstClub),
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = modifier
+                        .padding(10.dp)
+                )
+                Image(
+                    painter = painterResource(id = fixture.firstClubIcon),
+                    contentDescription = stringResource(id = R.string.fixture),
+                    modifier = modifier
+                        .size(40.dp)
+                )
+                Text(
+                    text = stringResource(id = fixture.matchStartTime),
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = modifier
+                        .padding(10.dp)
+                )
+                Text(
+                    text = stringResource(id = fixture.secondClub),
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = modifier
+                        .padding(10.dp)
+                )
+                Image(
+                    painter = painterResource(id = fixture.secondClubIcon),
+                    contentDescription = stringResource(id = R.string.fixture),
+                    modifier = modifier.size(40.dp)
+                )
+                
+            }
+        }
+    }
+}
 
+@Composable
+fun UpcomingFixturesComponent() {
+    LazyColumn(){
+        items(matchFixtures){match ->
+            UpcomingFixtures(fixture = match)
+        }
+    }
 }
 
 @Composable

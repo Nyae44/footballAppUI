@@ -25,4 +25,6 @@
     <string name="match_time">90+4</string>
     <string name="today_date">Date</string>
     <string name="result">0:6</string>
+    <string name="upcoming_fixtures">Upcoming Fixtures</string>
+    <string name="fixture">Fixture</string>
 </resources>
