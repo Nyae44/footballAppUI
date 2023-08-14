@@ -28,4 +28,8 @@
     <string name="upcoming_fixtures">Upcoming Fixtures</string>
     <string name="fixture">Fixture</string>
     <string name="calendar">Calendar</string>
+    <string name="notes">Notes</string>
+    <string name="profile">Profile</string>
+    <string name="arrow_back">Arrow Back</string>
+    <string name="match_details">Match details</string>
 </resources>

@@ -10,23 +10,18 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -78,7 +73,8 @@ import java.util.Locale
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    Surface(modifier = modifier.fillMaxHeight()) {
+    
+    Surface(modifier = modifier.fillMaxSize()) {
         Scaffold(
             topBar = { TopAppBar() },
             bottomBar = { BottomBarComponent()},
@@ -110,11 +106,16 @@ fun BottomBarComponent(modifier: Modifier = Modifier) {
             contentDescription = stringResource(id = R.string.home)
         )
         Icon(
-            imageVector = Icons.Default.DateRange,
-            contentDescription = stringResource(id = R.string.calendar),
-            modifier = modifier
-                .size(44.dp)
-
+            painter = painterResource(id = R.drawable.calendaricon),
+            contentDescription = stringResource(id = R.string.calendar)
+        )
+        Icon(
+            painter = painterResource(id = R.drawable.notes),
+            contentDescription = stringResource(id = R.string.notes)
+        )
+        Icon(
+            painter = painterResource(id = R.drawable.profile) ,
+            contentDescription = stringResource(id = R.string.profile)
         )
     }
 }
