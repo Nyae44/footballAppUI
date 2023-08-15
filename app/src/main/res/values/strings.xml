@@ -32,4 +32,8 @@
     <string name="profile">Profile</string>
     <string name="arrow_back">Arrow Back</string>
     <string name="match_details">Match details</string>
+    <string name="more_vert">More vert</string>
+    <string name="stats">Stats</string>
+    <string name="line_ups">Line-Up</string>
+    <string name="summary">Summary</string>
 </resources>

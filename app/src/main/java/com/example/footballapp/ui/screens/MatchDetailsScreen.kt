@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -44,6 +48,8 @@ fun MatchDetailsScreen(modifier: Modifier = Modifier) {
                     .padding(it)
             ) {
                 TopBarComponent()
+                StatsHeadline()
+                MatchStats()
 
             }
         }
@@ -63,8 +69,9 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
         )
         Row(
             modifier = modifier
+                .fillMaxWidth()
                 .padding(start = 10.dp, top = 15.dp),
-            horizontalArrangement = Arrangement.spacedBy(95.dp)
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.left_arrow),
@@ -73,11 +80,18 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
             )
             Text(
                 text = stringResource(id = R.string.match_details),
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
                 modifier = modifier
-                    .padding(top = 10.dp)
+                    .padding(top = 5.dp)
+            )
+            Icon(
+                imageVector = Icons.Default.MoreVert,
+                contentDescription = stringResource(id = R.string.more_vert),
+                modifier = modifier
+                    .padding(top = 10.dp),
+                tint = Color.White
             )
         }
       Card(
@@ -173,6 +187,8 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
             Row {
                 Text(
                     text = stringResource(id = R.string.match_time),
+                    modifier = modifier
+                        .padding(bottom = 10.dp)
                 )
             }
         }
@@ -180,8 +196,58 @@ fun TopBarComponent(modifier: Modifier = Modifier) {
         }
       }
 
+@Composable
+fun StatsHeadline(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 340.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        FilledTonalButton(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(Color.Gray)
+        ) {
+            Text(
+                text = stringResource(id = R.string.stats),
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+        FilledTonalButton(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(Color.Gray)
+        ) {
+            Text(
+                text = stringResource(id = R.string.line_ups),
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+        FilledTonalButton(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(Color.Gray)
+        ) {
+            Text(
+                text = stringResource(id = R.string.summary),
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+    }
+}
+@Composable
+fun MatchStats(modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier
+            .padding(start = 20.dp, end = 20.dp)
+    ) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+        ) {
 
-
+        }
+    }
+}
 
 @Preview( uiMode = Configuration.UI_MODE_NIGHT_YES, showSystemUi = true, showBackground = true)
 @Preview(showBackground = true, showSystemUi = true)
