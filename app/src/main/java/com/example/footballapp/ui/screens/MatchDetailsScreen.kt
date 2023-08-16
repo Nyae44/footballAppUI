@@ -18,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -238,13 +239,73 @@ fun StatsHeadline(modifier: Modifier = Modifier) {
 fun MatchStats(modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .padding(start = 20.dp, end = 20.dp)
+            .padding(top = 400.dp,start = 20.dp, end = 20.dp)
     ) {
         Column(
             modifier = modifier
-                .fillMaxWidth()
+                .padding(top = 5.dp)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(15.dp)
         ) {
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.shots_on_target_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.shots_on_target),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.shots_on_target_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                LinearProgressIndicator(progress = 1f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.shots_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
 
+                Text(
+                    text = stringResource(id = R.string.shots),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                Text(
+                    text = stringResource(id = R.string.shots_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
+            Row(
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+
+            }
         }
     }
 }

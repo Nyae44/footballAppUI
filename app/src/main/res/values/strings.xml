@@ -36,4 +36,32 @@
     <string name="stats">Stats</string>
     <string name="line_ups">Line-Up</string>
     <string name="summary">Summary</string>
+    <string name="shots_on_target">Shots On Target</string>
+    <string name="shots">Shots               </string>
+    <string name="possession">Ball Possession</string>
+    <string name="yellow_card">Yellow Card</string>
+    <string name="red_card">Red Card</string>
+    <string name="corner_kicks">Corner Kicks</string>
+    <string name="crosses">Crosses</string>
+    <string name="goalkeeper_saves">Goalkeeper Saves</string>
+    <string name="goal_kicks">Goal Kicks</string>
+    <string name="shots_on_target_1">2</string>
+    <string name="shots_on_target_2">6</string>
+    <string name="shots_1">4</string>
+    <string name="shots_2">15</string>
+    <string name="possession_1">26%</string>
+    <string name="possession_2">74%</string>
+    <string name="yellow_card_1">3</string>
+    <string name="yellow_card_2">0</string>
+    <string name="red_card_1">3</string>
+    <string name="red_card_2">0</string>
+    <string name="corner_kicks_1">0</string>
+    <string name="corner_kicks_2">23</string>
+    <string name="crosses_1">2</string>
+    <string name="crosses_2">54</string>
+    <string name="goalkeeper_saves_1">12</string>
+    <string name="goalkeeper_saves_2">1</string>
+    <string name="goal_kicks_1">3</string>
+    <string name="goal_kicks_2">19</string>
+
 </resources>
