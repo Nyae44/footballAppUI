@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.ButtonDefaults
@@ -40,6 +42,7 @@ import com.example.footballapp.ui.theme.AppTheme
 
 @Composable
 fun MatchDetailsScreen(modifier: Modifier = Modifier) {
+    val scrollState = rememberScrollState()
     Scaffold (
         topBar = {},
         bottomBar = {},
@@ -47,6 +50,7 @@ fun MatchDetailsScreen(modifier: Modifier = Modifier) {
             Surface(
                 modifier = modifier
                     .padding(it)
+                    .verticalScroll(scrollState)
             ) {
                 TopBarComponent()
                 StatsHeadline()
@@ -239,11 +243,11 @@ fun StatsHeadline(modifier: Modifier = Modifier) {
 fun MatchStats(modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .padding(top = 400.dp,start = 20.dp, end = 20.dp)
+            .padding(top = 400.dp,start = 20.dp, end = 20.dp, bottom = 20.dp)
     ) {
         Column(
             modifier = modifier
-                .padding(top = 5.dp)
+                .padding(top = 5.dp, bottom = 20.dp)
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(15.dp)
         ) {
@@ -301,10 +305,214 @@ fun MatchStats(modifier: Modifier = Modifier) {
             }
             Row(
                 modifier = modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-
+                LinearProgressIndicator(progress = 1f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.possession_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.possession),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.possession_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
+                horizontalArrangement = Arrangement.End
+            ){
+                LinearProgressIndicator(progress = 1f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.yellow_card_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.yellow_card),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.yellow_card_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp),
+                horizontalArrangement = Arrangement.Start
+            ){
+                LinearProgressIndicator(progress = 0.5f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.red_card_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.red_card),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.red_card_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp),
+                horizontalArrangement = Arrangement.Start
+            ){
+                LinearProgressIndicator(progress = 0.5f )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.corner_kicks_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.corner_kicks),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.corner_kicks_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
+                horizontalArrangement = Arrangement.End
+            ){
+                LinearProgressIndicator(progress = 1f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.crosses_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.crosses),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.crosses_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
+                horizontalArrangement = Arrangement.End
+            ){
+                LinearProgressIndicator(progress = 1f)
+            }
+            Row(
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.goalkeeper_saves_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.goalkeeper_saves),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.goalkeeper_saves_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp),
+                horizontalArrangement = Arrangement.Start
+            ){
+                LinearProgressIndicator(progress = 0.7f)
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Text(
+                    text = stringResource(id = R.string.goal_kicks_1),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.goal_kicks),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Text(
+                    text = stringResource(id = R.string.goal_kicks_2),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+            Row (
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(end = 20.dp),
+                horizontalArrangement = Arrangement.End
+            ){
+                LinearProgressIndicator(progress = 1f)
             }
         }
     }

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -73,26 +72,27 @@ import java.util.Locale
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
-    
-    Surface(modifier = modifier.fillMaxSize()) {
         Scaffold(
             topBar = { TopAppBar() },
             bottomBar = { BottomBarComponent()},
-            content = {it
-                Column(
+            content = {
+                Surface(
                     modifier = modifier
                         .padding(it)
                 ) {
-                    CurrentDate()
-                    CalendarComponent()
-                    LiveScoreComponentTitle()
-                    LiveScoreComponent()
-                    UpcomingFixturesTitle()
-                    UpcomingFixturesComponent()
+                    Column(
+                        modifier = modifier
+                    ) {
+                        CurrentDate()
+                        CalendarComponent()
+                        LiveScoreComponentTitle()
+                        LiveScoreComponent()
+                        UpcomingFixturesTitle()
+                        UpcomingFixturesComponent()
+                    }
                 }
             }
         )
-    }
 }
 
 @Composable
