@@ -15,7 +15,6 @@ KizitonWose/Calendar Library
     
 <br />
 ## DarkMode 🌚
-    
-![](https://github.com/Nyae44/footballAppUI/blob/master/homeScreenDark_FootballUI.png)
 
+![](https://github.com/Nyae44/footballAppUI/blob/master/homeScreenDark_FootballUI.png)
 <br />
