@@ -13,10 +13,10 @@ KizitonWose/Calendar Library
 <br />
 ## LightMode 🌞   
 
-![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/homeScreenLight_FootballUI.png)
+![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/home_light_footballUI.png)
     
 <br />
 ## DarkMode 🌚
 
-![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/homeScreenDark_FootballUI.png)
+![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/home_dark_footballUI.png)
 <br />
