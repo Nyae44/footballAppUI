@@ -11,7 +11,7 @@ Android, Kotlin, JetPack compose
 KizitonWose/Calendar Library
 
 <br />
-## LightMode 🌞
+## LightMode 🌞   
 
 ![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/homeScreenLight_FootballUI.png)
     
