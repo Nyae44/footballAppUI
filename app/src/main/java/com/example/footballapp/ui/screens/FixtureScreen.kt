@@ -8,9 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -18,6 +17,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -30,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.example.footballapp.R
 import com.example.footballapp.data.FixtureRepository.leagueType
 import com.example.footballapp.model.League
+import com.example.footballapp.ui.theme.AppTheme
 
 
 @Composable
@@ -87,28 +91,31 @@ fun FixtureBottomBar(modifier: Modifier = Modifier) {
 
 @Composable
 fun LeagueType(league: League,modifier: Modifier = Modifier) {
+    var isSelected by remember { mutableStateOf(false) }
+    val selectedLeagueIndex = remember { mutableStateOf(-1)}
+    //Colors for selected and unselected color
+    val selectedColor = Color.Magenta
+    val unselectedColor = Color.Gray
     Row (
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 10.dp, end = 10.dp, start = 10.dp)
     ){
-        Card(
-            modifier = modifier
-        ) {
             FilledTonalButton(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.buttonColors(Color.Magenta)
+                onClick = {
+                  isSelected = !isSelected
+                },
+                colors = if (isSelected) ButtonDefaults.buttonColors(selectedColor) else ButtonDefaults.buttonColors(unselectedColor),
             ) {
                 Text(text = stringResource(id = league.leagueName))
-            }
-        }
+              }
     }
 }
 
 @Composable
 fun LeagueTypeComponent(modifier: Modifier = Modifier) {
     LazyRow(){
-        items(leagueType){league ->
+        itemsIndexed(leagueType){index,league ->
             LeagueType(league = league)
         }
     }
@@ -124,5 +131,7 @@ fun FullFixtureList(modifier: Modifier = Modifier) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun FixtureScreenPreview() {
-    FixtureScreen()
+    AppTheme {
+        FixtureScreen()
+    }
 }
