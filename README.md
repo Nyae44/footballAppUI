@@ -14,7 +14,8 @@ KizitonWose/Calendar Library
 
 ## LightMode 🌞   
 
-![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/home_light_footballUI.png)
+![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/home_light_footballUI.png
+![](https://github.com/Nyae44/footballAppUI/blob/master/screenshots/DetailsScreen_Light.png)
     
 <br />
 

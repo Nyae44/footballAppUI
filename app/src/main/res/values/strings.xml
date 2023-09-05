@@ -64,5 +64,8 @@
     <string name="goal_kicks_1">3</string>
     <string name="goal_kicks_2">19</string>
     <string name="fixtures">Fixtures</string>
-
+    <string name="league_name_1">English Premier League</string>
+    <string name="league_name_2">Bundesliga</string>
+    <string name="league_name_3">Ligue 1</string>
+    <string name="league_name_4">Serie A</string>
 </resources>
